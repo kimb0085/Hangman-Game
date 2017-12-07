@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Hangman alla Friends</title>
+	<link rel="stylesheet" type="text/css" href="assets/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Sigmar+One" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+<body>
+	<div class="jumbotron" id="game">
+		<h1>HANGMAN</h1>
+	</div>
+
+	<div class="container">
+		<div class="boxLeft">
+			<a href="#" class="thumbnail">
+				<img src="assets/images/friends.jpg">
+			</a>
+	</div>
+
+	<div class="boxRight">
+		<br>
+		<br>
+		<br>
+		<p>Press any key to get started!</p>
+		<div class="lives">Wins<br>
+
+		</div>
+		<br>
+		<br>
+		<div class="space" id="space">Current Word or Phrase<br>
+
+		</div>	
+		<br>
+		<br>
+		<div class="guessRemain"> <br>
+			
+		</div>
+		<br>
+		<br>
+		<div class="lettersGuessed"> <br>
+
+		</div>
+<script type="text/javascript">
+  document.addEventListener("keyup", function(){
+  
+  var categories;         // Array of topics
+  var chosenCategory;     // Selected catagory
+  var word ;              // Selected word
+  var guess ;             // Guess letters
+  var guesses = [ ];      // Stored letters guessed
+  var counter ;           // Count wins
+  var space;              // Number of spaces in word '-'
+
+  // Get elements
+  var showLetters = document.getElementById("lettersGuessed");
+  var showCatagory = document.getElementById("scatagory");
+  var showWins = document.getElementById("wins")
+  
+
+  // Create geusses ul
+   result = function () {
+    wordHolder = document.getElementById('hold');
+    correct = document.createElement('ul');
+
+    for (var i = 0; i < word.length; i++) {
+      correct.setAttribute('id', 'my-word');
+      guess = document.createElement('li');
+      guess.setAttribute('class', 'guess');
+      if (word[i] === "-") {
+        guess.innerHTML = "-";
+        space = 1;
+      } else {
+        guess.innerHTML = "_";
+      }
+
+      guesses.push(guess);
+      wordHolder.appendChild(correct);
+      correct.appendChild(guess);
+    }
+  }
+  
+  // Show wins
+   comments = function () {
+    showWins.innerHTML = "Number of wins " + counter;
+    if (wins < 1) {
+      showWins.innerHTML = "Could you BE any more wrong?";
+    }
+    for (var i = 0; i < guesses.length; i++) {
+      if (counter + space === guesses.length) {
+        showWins.innerHTML = "I'll be there for you!";
+      }
+    }
+  }
+
+  // OnClick Function
+   check = function () {
+    list.onclick = function () {
+      var guess = (this.innerHTML);
+      this.setAttribute("class", "active");
+      this.onclick = null;
+      for (var i = 0; i < word.length; i++) {
+        if (word[i] === geuss) {
+          guesses[i].innerHTML = guess;
+          counter += 1;
+        } 
+      }
+      var j = (word.indexOf(guess));
+      if (j === -1) {
+        lives -= 1;
+        comments();
+      } else {
+        comments();
+      }
+    }
+  }
+  
+    
+  // Play
+  play = function () {
+    categories = ["he's her lobster", "central perk", "coffee", "marcel", "moo point", "joey", "ross", "rachel",
+ 		"monica", "phoebe", "chandler", "yemen", "pivot", "we were on a break"];   
+
+    chosenCategory = categories[Math.floor(Math.random() * categories.length)];
+    word = chosenCategory[Math.floor(Math.random() * chosenCategory.length)];
+    // word = word.replace(/\s/g, "-");
+
+    guesses = [ ];
+    counter = 0;
+    space = 0;
+    comments();
+    selectCat();
+  	}
+  });
+
+  // play();
+  
+  // Reset
+
+  // document.getElementById('reset').onclick = function() {
+  //   correct.parentNode.removeChild(correct);
+  //   letters.parentNode.removeChild(letters);
+  //   showClue.innerHTML = "";
+  //   context.clearRect(0, 0, 400, 400);
+  //   play();
+  // }
+// }
+
+</script>		
+</body>
+</html>
